@@ -38,12 +38,14 @@ playlist_link = extract_everything this_url, playlist_pattern
 links = extract_everything playlist_link[0], link_pattern
 write2file links, filename
 
-# in case download
+# in case download argument is passed
 if ARGV[1] == "download" then
     download_dir = File.basename filename, ".*"
     Dir.mkdir download_dir
-    Dir.chdir(download_dir) do 
-        
+    system "mv #{filename} #{download_dir}"
+    Dir.chdir(download_dir) do
+        puts Dir.pwd 
+        system "cat #{filename} | xargs wget"
     end
 end
 
