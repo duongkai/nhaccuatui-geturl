@@ -8,7 +8,7 @@ if [ -n "$1" ]; then
     echo "Finding the URL $file"
     files=`curl --silent $file | grep mp3 | awk -F "\[" '{print $3}' |awk -F "\]" '{print $1}'`  
     echo "Finding $files"
-    echo $files | xargs wget 
+    #echo $files | xargs wget 
 else 
     echo "Syntax get_links.sh <http://nhaccuatui.com...>"
 fi
